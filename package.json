@@ -24,7 +24,7 @@
   "bugs": {
     "url": ""
   },
-  "homepage": "",
+  "homepage": "https://femto-anon-messaging-api.herokuapp.com/",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",

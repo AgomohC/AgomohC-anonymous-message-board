@@ -1,0 +1,282 @@
+openapi: 3.0.0
+info:
+  title: anonymous-message-board-api
+  description: An API that serves an anonymous message board
+  contact: {}
+  version: "1.0"
+servers:
+  - url: https://femto-anon-messaging-api.herokuapp.com/api
+    variables: {}
+paths:
+  /threads/{board}:
+    parameters:
+      - in: path
+        name: board
+        schema:
+          type: string
+        required: true
+        description: The board hosting the threads and replies. The only board on the database right now is "test".Passing in other values would result in a 404 error due to this. You can create more boards with any of the post routes. :)
+    get:
+      tags:
+        - Threads
+      summary: Get Thread
+      operationId: GetThread
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+        - Threads
+      summary: Create Thread
+      operationId: CreateThread
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateThreadRequest"
+            example:
+              board: test
+              text: mummy
+              delete_password: test2
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    put:
+      tags:
+        - Threads
+      summary: Update Thread
+      operationId: UpdateThread
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateThreadRequest"
+            example:
+              board: test
+              thread_id: 61748891b40efe574eaa1f61
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Threads
+      summary: Delete Thread
+      operationId: DeleteThread
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /replies/{board}:
+    parameters:
+      - in: path
+        name: board
+        schema:
+          type: string
+        required: true
+        description: The board hosting the threads and replies. The only board on the database right now is "test". Passing in other values would result in a 404 error due to this. You can create more boards with any of the post routes. :)
+    get:
+      tags:
+        - Replies
+      summary: Get Replies
+      operationId: GetReplies
+      parameters:
+        - in: query
+          name: thread_id
+          schema:
+            type: string
+          description: _Id of thread use reply you want to fetch
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+        - Replies
+      summary: Create Reply
+      operationId: CreateReply
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateReplyRequest"
+            example:
+              board: test
+              thread_id: 6175eeb85f171c4b95c1d18b
+              text: yadida
+              delete_password: "12345"
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    put:
+      tags:
+        - Replies
+      summary: Update Reply
+      operationId: UpdateReply
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateReplyRequest"
+            example:
+              board: test
+              thread_id: 617484fe5c5830a6bd114c2a
+              reply_id: 61748839b40efe574eaa1f4e
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Replies
+      summary: Delete Reply
+      operationId: DeleteReply
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    CreateThreadRequest:
+      title: CreateThreadRequest
+      required:
+        - board
+        - text
+        - delete_password
+      type: object
+      properties:
+        board:
+          type: string
+        text:
+          type: string
+        delete_password:
+          type: string
+      example:
+        board: test
+        text: mummy
+        delete_password: test2
+    UpdateThreadRequest:
+      title: UpdateThreadRequest
+      required:
+        - board
+        - thread_id
+      type: object
+      properties:
+        board:
+          type: string
+        thread_id:
+          type: string
+      example:
+        board: test
+        thread_id: 61748891b40efe574eaa1f61
+    DeleteThreadRequest:
+      title: DeleteThreadRequest
+      required:
+        - board
+        - thread_id
+        - delete_password
+      type: object
+      properties:
+        board:
+          type: string
+        thread_id:
+          type: string
+        delete_password:
+          type: string
+      example:
+        board: test
+        thread_id: 6175ee625f171c4b95c1d186
+        delete_password: test2
+    CreateReplyRequest:
+      title: CreateReplyRequest
+      required:
+        - board
+        - thread_id
+        - text
+        - delete_password
+      type: object
+      properties:
+        board:
+          type: string
+        thread_id:
+          type: string
+        text:
+          type: string
+        delete_password:
+          type: string
+      example:
+        board: test
+        thread_id: 6175eeb85f171c4b95c1d18b
+        text: yadida
+        delete_password: "12345"
+    UpdateReplyRequest:
+      title: UpdateReplyRequest
+      required:
+        - board
+        - thread_id
+        - reply_id
+      type: object
+      properties:
+        board:
+          type: string
+        thread_id:
+          type: string
+        reply_id:
+          type: string
+      example:
+        board: test
+        thread_id: 617484fe5c5830a6bd114c2a
+        reply_id: 61748839b40efe574eaa1f4e
+    DeleteReplyRequest:
+      title: DeleteReplyRequest
+      required:
+        - board
+        - thread_id
+        - delete_password
+        - reply_id
+      type: object
+      properties:
+        board:
+          type: string
+        thread_id:
+          type: string
+        delete_password:
+          type: string
+        reply_id:
+          type: string
+      example:
+        board: test
+        thread_id: 61782b557d63aaaa9e73831e
+        delete_password: "12345"
+        reply_id: 61782baa7d63aaaa9e738322
+tags:
+  - name: Threads
+    description: ""
+  - name: Replies
+    description: ""

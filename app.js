@@ -17,6 +17,10 @@ const helmet = require("helmet");
 //require express rate limit
 const rateLimit = require("express-rate-limit");
 
+// import swagger
+const swaggerUI = require("swagger-ui-express");
+const YAML = require("yamljs");
+const swaggerDocument = YAML.load("./docs.yaml");
 //import routes
 const messageRouter = require("./routes/message-routes");
 
@@ -43,8 +47,14 @@ app.use(cors());
 
 app.use(helmet());
 
-app.use(express.static("./public"));
+// app.use(express.static("./public"));
 
+app.get("/", (req, res) => {
+  res.send(
+    '<header><h1>ISQA_3 - Anon Message Board</h1></header><h4><a href="/api-docs" target="_blank"> See Documentation <a> </h4>'
+  );
+});
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use("/api", messageRouter);
 
 app.use(notFound);
