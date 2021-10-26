@@ -37,7 +37,7 @@ const getReplies = async (req, res) => {
   } = req;
 
   // find a thread with all its associated replies sorted in descending order of the updated at field
-  const thread = await Thread.findOne({ board, thread_id })
+  const thread = await Thread.findOne({ board, _id: thread_id })
     .populate({
       path: "replies",
       select: "board _id text thread_id updatedAt createdAt",
