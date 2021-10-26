@@ -22,7 +22,7 @@
   "author": "Chinaemerem Agomoh",
   "license": "ISC",
   "bugs": {
-    "url": ""
+    "url": "https://femto-anon-messaging-api.herokuapp.com/api-docs/"
   },
   "homepage": "https://femto-anon-messaging-api.herokuapp.com/",
   "dependencies": {
