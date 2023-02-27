@@ -1,1 +1,1 @@
-## For more info, see [docs](https://femto-anon-messaging.up.railway.app/)
+## For more info, see [docs](https://femto-anon-messaging.glitch.me/api-docs/)
