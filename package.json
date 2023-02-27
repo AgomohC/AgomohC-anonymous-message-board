@@ -22,9 +22,9 @@
   "author": "Chinaemerem Agomoh",
   "license": "ISC",
   "bugs": {
-    "url": "https://femto-anon-messaging-api.herokuapp.com/api-docs/"
+    "url": "https://femto-anon-messaging.glitch.me/api-docs/"
   },
-  "homepage": "https://femto-anon-messaging-api.herokuapp.com/",
+  "homepage": "https://femto-anon-messaging.glitch.me/api-docs/",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
